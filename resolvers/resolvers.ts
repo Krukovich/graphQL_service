@@ -1,6 +1,7 @@
 import HTTP from '../service';
 import { ENDPOINTS } from '../constatns';
 import { ArtistMutation } from '../Artists';
+import { UsersMutations } from '../Users';
 import { Album, Artist, Band, Favorite, Genre, Track, User } from '../interfaces';
 
 export const resolvers: {
@@ -15,6 +16,7 @@ export const resolvers: {
     getJWT: () => Promise<string>;
   };
   Mutation: {
+    //TODO ADD ANOTHER MUTATIONS TYPES
     createArtist: (data: Artist) => Promise<Artist>;
     updateArtist: (data: Artist) => Promise<Artist>;
     deleteArtist: () => void;
@@ -48,7 +50,7 @@ export const resolvers: {
     },
     getUsers: async (): Promise<User[]> => {
       const http: HTTP = new HTTP();
-      const data = await http.get(ENDPOINTS.GET_USERS);
+      const data = await http.get(ENDPOINTS.USERS.GET_USERS);
       return data.items;
     },
     getFavourites: async (): Promise<Favorite[]> => {
@@ -64,5 +66,6 @@ export const resolvers: {
   },
   Mutation: {
     ...ArtistMutation,
+    ...UsersMutations,
   },
 };

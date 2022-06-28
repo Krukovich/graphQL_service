@@ -25,6 +25,8 @@ export const typeDefs = gql`
     ): Artist
     deleteArtist(id: String): Artist
     updateArtist(id: String): Artist
+
+    register(firstName: String!, lastName: String!, password: String!, email: String!): User
   }
 
   type Track {
