@@ -12,6 +12,21 @@ export const typeDefs = gql`
     getFavourites: [Favourites]
   }
 
+  type Mutation {
+    createArtist(
+      firstName: String!
+      secondName: String!
+      middleName: String
+      birthDate: String
+      birthPlace: String
+      country: String
+      bands: [String]
+      instruments: [String]
+    ): Artist
+    deleteArtist(id: String): Artist
+    updateArtist(id: String): Artist
+  }
+
   type Track {
     id: ID!
     title: String
