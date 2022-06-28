@@ -27,6 +27,11 @@ export const typeDefs = gql`
     updateArtist(id: String): Artist
 
     register(firstName: String!, lastName: String!, password: String!, email: String!): User
+    login(email: String!, password: String!): Jwt
+  }
+
+  type Jwt {
+    jwt: String!
   }
 
   type Track {

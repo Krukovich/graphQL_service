@@ -8,6 +8,7 @@ export const ENDPOINTS = {
   USERS: {
     REGISTER: 'http://localhost:3004/v1/users/register',
     GET_USERS: 'http://localhost:3004/v1/users/',
+    LOGIN: 'http://localhost:3004/v1/users/login/'
   },
   ARTIST: {
     SAVE: 'http://localhost:3002/v1/artists/',
