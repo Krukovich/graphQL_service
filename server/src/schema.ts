@@ -2,7 +2,14 @@ import { gql } from 'apollo-server';
 
 export const typeDefs = gql`
   type Query {
-    getArtist: Artist
+    getArtist: [Artist]
+    getGenres: [Genre]
+    getTracks: [Track]
+    getBands: [Band]
+    getAlbums: [Album]
+    getJWT: String
+    getUsers: [User]
+    getFavourites: [Favourites]
   }
 
   type Track {
