@@ -1,20 +1,19 @@
-import { Artist } from '../../interfaces';
+import { Artist, IContext } from '../../interfaces';
 import HTTP from '../../service';
 import { ENDPOINTS } from '../../constatns';
 
 export const ArtistMutation: {
-  createArtist: (data: Artist) => Promise<Artist>;
-  updateArtist: (data: Artist) => Promise<Artist>;
+  createArtist: (_: null, data: Artist, context: IContext) => Promise<Artist>;
+  updateArtist: (_: null, data: Artist, context: IContext) => Promise<Artist>;
   deleteArtist: () => void;
 } = {
-  createArtist: async (data: Artist) => {
+  createArtist: async (_: null, data: Artist, context: IContext) => {
     const http = new HTTP();
-    return await http.post(ENDPOINTS.ARTIST.SAVE, data);
+    return await http.post(ENDPOINTS.ARTIST.SAVE, data, context);
   },
-  updateArtist: async (data: Artist): Promise<Artist> => {
-    //TODO CHANGE LOGIC
+  updateArtist: async (_: null, data: Artist, context: IContext): Promise<Artist> => {
     const http = new HTTP();
-    return await http.post(ENDPOINTS.ARTIST.SAVE, data);
+    return await http.post(ENDPOINTS.ARTIST.SAVE, data, context);
   },
   //TODO ADD LOGIC FOR DELETE
   deleteArtist: () => {},

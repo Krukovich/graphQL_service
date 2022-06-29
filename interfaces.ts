@@ -72,3 +72,7 @@ export interface Favorite {
   artistsIds: string[];
   tracksIds: string[];
 }
+
+export interface IContext {
+  token: string;
+}

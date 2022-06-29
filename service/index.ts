@@ -1,5 +1,6 @@
 import fetch from 'node-fetch';
 import { HEADERS, METHOD } from '../constatns';
+import { IContext } from '../interfaces';
 
 // TODO ADD TYPES
 class HTTP {
@@ -13,14 +14,13 @@ class HTTP {
     return response.json();
   }
 
-  //TODO ADD LOGIC FOR GET JWT TOKEN
-  async post(url: string, data: any): Promise<any> {
+  async post(url: string, data: any, context: IContext): Promise<any> {
     const response = await fetch(url, {
       method: METHOD.POST,
       body: JSON.stringify(data),
       headers: {
         ...HEADERS,
-        // Authorization: authToken ? `Bearer ${authToken}` : '',
+        Authorization: context.token ? context.token : '',
       },
     });
 
