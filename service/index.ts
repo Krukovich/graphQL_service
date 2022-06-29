@@ -17,7 +17,10 @@ class HTTP {
     const response = await fetch(url, {
       method: METHOD.POST,
       body: JSON.stringify(data),
-      headers: HEADERS,
+      headers: {
+        ...HEADERS,
+        // Authorization: authToken ? `Bearer ${authToken}` : '',
+      },
     });
 
     return await response.json();

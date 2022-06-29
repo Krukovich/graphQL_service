@@ -1,6 +1,6 @@
-import { User } from '../interfaces';
-import HTTP from '../service';
-import { ENDPOINTS } from '../constatns';
+import { User } from '../../interfaces';
+import HTTP from '../../service';
+import { ENDPOINTS } from '../../constatns';
 import { v4 as uuidv4 } from 'uuid';
 
 export const UsersMutations: {

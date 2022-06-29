@@ -1,7 +1,7 @@
 import HTTP from '../service';
 import { ENDPOINTS } from '../constatns';
-import { ArtistMutation } from '../Artists';
-import { UsersMutations } from '../Users';
+import { ArtistMutation } from '../modules/artists';
+import { UsersMutations } from '../modules/users';
 import { Album, Artist, Band, Favorite, Genre, Track, User } from '../interfaces';
 
 export const resolvers: {

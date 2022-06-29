@@ -1,6 +1,6 @@
-import { Artist } from '../interfaces';
-import HTTP from '../service';
-import { ENDPOINTS } from '../constatns';
+import { Artist } from '../../interfaces';
+import HTTP from '../../service';
+import { ENDPOINTS } from '../../constatns';
 
 export const ArtistMutation: {
   createArtist: (data: Artist) => Promise<Artist>;
