@@ -39,5 +39,18 @@ class HTTP {
 
     return await response.json();
   }
+
+  async delete(url: string, data: any, context: IContext): Promise<any> {
+    const response = await fetch(url, {
+      method: METHOD.DELETE,
+      body: JSON.stringify(data),
+      headers: {
+        ...HEADERS,
+        Authorization: context.token ? context.token : '',
+      },
+    });
+
+    return await response.json();
+  }
 }
 export default HTTP;

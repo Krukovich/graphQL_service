@@ -2,11 +2,10 @@ import { Album, IContext } from '../../interfaces';
 import HTTP from '../../service';
 import { ENDPOINTS } from '../../constatns';
 
-//TODO ADD MUTATION
 export const AlbumsMutation: {
   createAlbum: (_: null, data: Album, context: IContext) => Promise<Album>;
   updateAlbum: (_: null, data: any, context: IContext) => Promise<Album>;
-  deleteAlbum: () => void;
+  deleteAlbum: (_: null, data: { albumId: string }, context: IContext) => Promise<Album>;
 } = {
   createAlbum: async (_: null, data: Album, context: IContext) => {
     const http: HTTP = new HTTP();
@@ -17,8 +16,10 @@ export const AlbumsMutation: {
     const http: HTTP = new HTTP();
     return await http.put(`${ENDPOINTS.ALBUMS.UPDATE}${albumId}`, data, context);
   },
-  deleteAlbum: () => {
+  deleteAlbum: async (_: null, data: { albumId: string }, context: IContext) => {
+    const { albumId }: { albumId: string } = data;
     const http: HTTP = new HTTP();
+    return await http.delete(`${ENDPOINTS.ALBUMS.UPDATE}${albumId}`, data, context);
   },
 };
 

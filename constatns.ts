@@ -20,10 +20,11 @@ export const ENDPOINTS = {
   },
 };
 
-export const METHOD: { GET: string; POST: string; PUT: string } = {
+export const METHOD: { GET: string; POST: string; PUT: string; DELETE: string } = {
   GET: 'GET',
   POST: 'POST',
   PUT: 'PUT',
+  DELETE: 'DELETE',
 };
 
 export const HEADERS: { 'Content-Type': string } = { 'Content-Type': 'application/json' };

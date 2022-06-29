@@ -54,7 +54,7 @@ export const typeDefs = gql`
       trackIds: [String]
       genresIds: [String]
     ): Album
-    deleteAlbum(id: String!): Album
+    deleteAlbum(albumId: String!): Album
 
     createBand(name: String!, origin: String, website: String, genresIds: [String]): Band
     updateBand(name: String, origin: String, website: String, genresIds: [String]): Band
