@@ -13,6 +13,7 @@ class HTTP {
     return response.json();
   }
 
+  //TODO ADD LOGIC FOR GET JWT TOKEN
   async post(url: string, data: any): Promise<any> {
     const response = await fetch(url, {
       method: METHOD.POST,
