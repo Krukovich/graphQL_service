@@ -12,6 +12,7 @@ export const typeDefs = gql`
     getFavourites: [Favourites]
 
     getUserById(id: String!): User
+    getAlbumById(id: String!): Album
   }
 
   type Mutation {

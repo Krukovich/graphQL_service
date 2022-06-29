@@ -25,10 +25,16 @@ export const AlbumsMutation: {
 
 export const AlbumsQuery: {
   getAlbums: () => Promise<Album[]>;
+  getAlbumById: (_: null, data: { id: string }) => Promise<Album>;
 } = {
   getAlbums: async (): Promise<Album[]> => {
     const http: HTTP = new HTTP();
     const data = await http.get(ENDPOINTS.ALBUMS.GET);
     return data.items;
+  },
+  getAlbumById: async (_: null, data: { id: string }) => {
+    const { id }: { id: string } = data;
+    const http: HTTP = new HTTP();
+    return await http.get(`${ENDPOINTS.ALBUMS.GET}${id}`);
   },
 };
