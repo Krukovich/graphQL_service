@@ -1,8 +1,8 @@
 import HTTP from '../service';
 import { ENDPOINTS } from '../constatns';
 import { ArtistMutation } from '../modules/artists';
-import { UsersMutations } from '../modules/users';
-import { Album, Artist, Band, Favorite, Genre, Track, User } from '../interfaces';
+import { UsersMutations, UsersQuery } from '../modules/users';
+import { Album, Artist, Band, Favorite, Genre, Track } from '../interfaces';
 
 export const resolvers: {
   Query: {
@@ -11,7 +11,6 @@ export const resolvers: {
     getTracks: () => Promise<Track[]>;
     getBands: () => Promise<Band[]>;
     getAlbums: () => Promise<Album[]>;
-    getUsers: () => Promise<User[]>;
     getFavourites: () => Promise<Favorite[]>; //TODO (available only for logged in user)
     getJWT: () => Promise<string>;
   };
@@ -23,6 +22,7 @@ export const resolvers: {
   };
 } = {
   Query: {
+    ...UsersQuery,
     getArtist: async (): Promise<Artist[]> => {
       const http: HTTP = new HTTP();
       const data = await http.get(ENDPOINTS.ARTIST.GET);
@@ -46,11 +46,6 @@ export const resolvers: {
     getAlbums: async (): Promise<Album[]> => {
       const http: HTTP = new HTTP();
       const data = await http.get(ENDPOINTS.GET_ALBUMS);
-      return data.items;
-    },
-    getUsers: async (): Promise<User[]> => {
-      const http: HTTP = new HTTP();
-      const data = await http.get(ENDPOINTS.USERS.GET_USERS);
       return data.items;
     },
     getFavourites: async (): Promise<Favorite[]> => {

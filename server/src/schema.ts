@@ -10,6 +10,7 @@ export const typeDefs = gql`
     getJWT: String
     getUsers: [User]
     getFavourites: [Favourites]
+    getUserById(id: String!): User
   }
 
   type Mutation {
@@ -23,8 +24,8 @@ export const typeDefs = gql`
       bands: [String]
       instruments: [String]
     ): Artist
-    deleteArtist(id: String): Artist
-    updateArtist(id: String): Artist
+    deleteArtist(id: String!): Artist
+    updateArtist(id: String!): Artist
 
     register(firstName: String!, lastName: String!, password: String!, email: String!): User
     login(email: String!, password: String!): Jwt
@@ -35,7 +36,7 @@ export const typeDefs = gql`
   }
 
   type Track {
-    id: ID!
+    _id: ID!
     title: String
     albums: String
     bands: [Band]
@@ -45,7 +46,7 @@ export const typeDefs = gql`
   }
 
   type User {
-    id: ID!
+    _id: ID!
     firstName: String
     secondName: String
     middleName: String
@@ -54,7 +55,7 @@ export const typeDefs = gql`
   }
 
   type Album {
-    id: ID
+    _id: ID
     name: String
     released: Int
     artists: [Artist]
@@ -65,7 +66,7 @@ export const typeDefs = gql`
   }
 
   type Favourites {
-    id: ID!
+    _id: ID!
     userId: ID!
     bands: [ID]
     genres: [ID]
@@ -74,7 +75,7 @@ export const typeDefs = gql`
   }
 
   type Genre {
-    id: ID!
+    _id: ID!
     name: String
     description: String
     country: String
@@ -82,7 +83,7 @@ export const typeDefs = gql`
   }
 
   type Band {
-    id: ID!
+    _id: ID!
     name: String
     origin: String
     members: [Member]
@@ -91,7 +92,7 @@ export const typeDefs = gql`
   }
 
   type Artist {
-    id: ID!
+    _id: ID!
     firstName: String
     secondName: String
     middleName: String
@@ -103,7 +104,7 @@ export const typeDefs = gql`
   }
 
   type Member {
-    id: ID!
+    _id: ID!
     artist: Artist
     instrument: String
     years: String
