@@ -16,5 +16,16 @@ export const ArtistMutation: {
     const http = new HTTP();
     return await http.post(ENDPOINTS.ARTIST.SAVE, data);
   },
+  //TODO ADD LOGIC FOR DELETE
   deleteArtist: () => {},
+};
+
+export const ArtistQuery: {
+  getArtist: () => Promise<Artist[]>;
+} = {
+  getArtist: async (): Promise<Artist[]> => {
+    const http: HTTP = new HTTP();
+    const data = await http.get(ENDPOINTS.ARTIST.GET);
+    return data.items;
+  },
 };

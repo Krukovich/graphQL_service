@@ -10,6 +10,7 @@ export const typeDefs = gql`
     getJWT: String
     getUsers: [User]
     getFavourites: [Favourites]
+
     getUserById(id: String!): User
   }
 
@@ -26,6 +27,27 @@ export const typeDefs = gql`
     ): Artist
     deleteArtist(id: String!): Artist
     updateArtist(id: String!): Artist
+
+    createAlbum(id: String!): Album
+    deleteAlbum(id: String!): Album
+    updateAlbum(id: String!): Album
+
+    createBand(id: String!): Band
+    deleteBand(id: String!): Band
+    updateBand(id: String!): Band
+
+    addTrackToFavourites(id: String!): Favourites
+    addBandToFavourites(id: String!): Favourites
+    addArtistToFavourites(id: String!): Favourites
+    addGenreToFavourites(id: String!): Favourites
+
+    createGenre(id: String!): Genre
+    deleteGenre(id: String!): Genre
+    updateGenre(id: String!): Genre
+
+    createTrack(id: String!): Track
+    deleteTrack(id: String!): Track
+    updateTrack(id: String!): Track
 
     register(firstName: String!, lastName: String!, password: String!, email: String!): User
     login(email: String!, password: String!): Jwt
