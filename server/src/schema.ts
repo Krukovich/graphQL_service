@@ -46,6 +46,7 @@ export const typeDefs = gql`
       genresIds: [String]
     ): Album
     updateAlbum(
+      albumId: String!
       name: String
       released: String
       artistsIds: [String]

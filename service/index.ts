@@ -26,5 +26,18 @@ class HTTP {
 
     return await response.json();
   }
+
+  async put(url: string, data: any, context: IContext): Promise<any> {
+    const response = await fetch(url, {
+      method: METHOD.PUT,
+      body: JSON.stringify(data),
+      headers: {
+        ...HEADERS,
+        Authorization: context.token ? context.token : '',
+      },
+    });
+
+    return await response.json();
+  }
 }
 export default HTTP;
