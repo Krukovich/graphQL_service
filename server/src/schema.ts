@@ -25,29 +25,68 @@ export const typeDefs = gql`
       bands: [String]
       instruments: [String]
     ): Artist
+    updateArtist(
+      firstName: String
+      secondName: String
+      middleName: String
+      birthDate: String
+      birthPlace: String
+      country: String
+      bands: [String]
+      instruments: [String]
+    ): Artist
     deleteArtist(id: String!): Artist
-    updateArtist(id: String!): Artist
 
-    createAlbum(id: String!): Album
+    createAlbum(
+      name: String!
+      released: String
+      artistsIds: [String]
+      bandsIds: [String]
+      trackIds: [String]
+      genresIds: [String]
+    ): Album
+    updateAlbum(
+      name: String
+      released: String
+      artistsIds: [String]
+      bandsIds: [String]
+      trackIds: [String]
+      genresIds: [String]
+    ): Album
     deleteAlbum(id: String!): Album
-    updateAlbum(id: String!): Album
 
-    createBand(id: String!): Band
+    createBand(name: String!, origin: String, website: String, genresIds: [String]): Band
+    updateBand(name: String, origin: String, website: String, genresIds: [String]): Band
     deleteBand(id: String!): Band
-    updateBand(id: String!): Band
 
     addTrackToFavourites(id: String!): Favourites
     addBandToFavourites(id: String!): Favourites
     addArtistToFavourites(id: String!): Favourites
     addGenreToFavourites(id: String!): Favourites
 
-    createGenre(id: String!): Genre
+    createGenre(name: String!, description: String, country: String, year: String): Genre
+    updateGenre(name: String, description: String, country: String, year: String): Genre
     deleteGenre(id: String!): Genre
-    updateGenre(id: String!): Genre
 
-    createTrack(id: String!): Track
+    createTrack(
+      title: String!
+      albumId: String
+      bandsIds: [String]
+      artistsIds: [String]
+      duration: Int!
+      released: Int!
+      genresIds: [String!]
+    ): Track
+    updateTrack(
+      title: String!
+      albumId: String
+      bandsIds: [String]
+      artistsIds: [String]
+      duration: Int!
+      released: Int!
+      genresIds: [String!]
+    ): Track
     deleteTrack(id: String!): Track
-    updateTrack(id: String!): Track
 
     register(firstName: String!, lastName: String!, password: String!, email: String!): User
     login(email: String!, password: String!): Jwt
