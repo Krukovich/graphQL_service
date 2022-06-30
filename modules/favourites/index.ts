@@ -1,4 +1,4 @@
-import { Favorite } from '../../interfaces';
+import { Favorite, IContext } from '../../interfaces';
 import HTTP from '../../service';
 import { ENDPOINTS } from '../../constatns';
 
@@ -19,11 +19,11 @@ export const FavouritesMutation = {
 };
 
 export const FavoritesQuery: {
-  getFavourites: () => Promise<Favorite[]>;
+  getFavourites: (_: null, args: null, context: IContext) => Promise<Favorite[]>;
 } = {
-  getFavourites: async (): Promise<Favorite[]> => {
+  getFavourites: async (_: null, args: null, context: IContext): Promise<Favorite[]> => {
     const http: HTTP = new HTTP();
-    const data = await http.get(ENDPOINTS.GET_FAVOURITES);
+    const data = await http.get(ENDPOINTS.FAVOURITES, context);
     return data.items;
   },
 };

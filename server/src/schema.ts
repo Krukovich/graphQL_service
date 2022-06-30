@@ -128,12 +128,11 @@ export const typeDefs = gql`
   }
 
   type Favourites {
-    _id: ID!
-    userId: ID!
-    bands: [ID]
-    genres: [ID]
-    artists: [ID]
-    tracks: [ID]
+    userId: String
+    bandsIds: [String]
+    genresIds: [String]
+    artistsIds: [String]
+    tracksIds: [String]
   }
 
   type Genre {

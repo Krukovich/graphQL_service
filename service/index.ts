@@ -6,10 +6,13 @@ import { IContext } from '../interfaces';
 class HTTP {
   constructor() {}
 
-  async get(url: string): Promise<any> {
+  async get(url: string, context?: IContext): Promise<any> {
     const response = await fetch(url, {
       method: METHOD.GET,
-      headers: HEADERS,
+      headers: {
+        ...HEADERS,
+        Authorization: (context && context.token) ? context.token : '',
+      },
     });
     return response.json();
   }
