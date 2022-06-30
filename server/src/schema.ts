@@ -15,6 +15,7 @@ export const typeDefs = gql`
     getBandById(id: String!): Album
     getGenreById(id: String!): Genre
     getTrackById(id: String!): Track
+    getFavouriteById(id: String!): Favourites
   }
 
   type Mutation {
@@ -63,10 +64,15 @@ export const typeDefs = gql`
     updateBand(name: String, origin: String, website: String, genresIds: [String]): Band
     deleteBand(id: String!): Band
 
-    addTrackToFavourites(id: String!): Favourites
-    addBandToFavourites(id: String!): Favourites
-    addArtistToFavourites(id: String!): Favourites
-    addGenreToFavourites(id: String!): Favourites
+    addTrackToFavourites(id: String!, type: String!): Favourites
+    addBandToFavourites(id: String!, type: String!): Favourites
+    addArtistToFavourites(id: String!, type: String!): Favourites
+    addGenreToFavourites(id: String!, type: String!): Favourites
+
+    deleteTrackFromFavourites(id: String!): Favourites
+    deleteBandFromFavourites(id: String!): Favourites
+    deleteArtistFromFavourites(id: String!): Favourites
+    deleteGenreFromFavourites(id: String!): Favourites
 
     createGenre(name: String!, description: String, country: String, year: String): Genre
     updateGenre(name: String, description: String, country: String, year: String): Genre

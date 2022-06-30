@@ -11,7 +11,7 @@ class HTTP {
       method: METHOD.GET,
       headers: {
         ...HEADERS,
-        Authorization: (context && context.token) ? context.token : '',
+        Authorization: context && context.token ? context.token : '',
       },
     });
     return response.json();

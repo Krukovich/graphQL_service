@@ -15,7 +15,11 @@ export const ENDPOINTS = {
     LOGIN: `${API_URL}:${PORT_USER}/v1/users/login/`,
     GET: `${API_URL}:${PORT_USER}/v1/users/`,
   },
-  FAVOURITES: `${API_URL}:${PORT_FAVOURITES}/v1/favourites/`,
+  FAVOURITES: {
+    GET: `${API_URL}:${PORT_FAVOURITES}/v1/favourites/`,
+    ADD: `${API_URL}:${PORT_FAVOURITES}/v1/favourites/add`,
+    DELETE: `${API_URL}:${PORT_FAVOURITES}/v1/favourites/remove`,
+  },
   ARTIST: `${API_URL}:${PORT_ARTIST}/v1/artists/`,
   ALBUMS: `${API_URL}:${PORT_ALBUM}/v1/albums/`,
   GENRES: `${API_URL}:${PORT_GENRE}/v1/genres/`,
