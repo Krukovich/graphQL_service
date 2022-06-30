@@ -25,7 +25,7 @@ export const typeDefs = gql`
       middleName: String
       birthDate: String
       birthPlace: String
-      country: String
+      country: String!
       bands: [String]
       instruments: [String]
     ): Artist
