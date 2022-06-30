@@ -17,16 +17,10 @@ export const UsersMutations: {
 };
 
 export const UsersQuery: {
-  getUsers: () => Promise<User[]>;
   getUserById: (_: null, data: { id: string }) => Promise<User>;
 } = {
-  getUsers: async (): Promise<User[]> => {
-    const http: HTTP = new HTTP();
-    const data = await http.get(ENDPOINTS.USERS.GET_USERS);
-    return data.items;
-  },
   getUserById: async (_: null, data: { id: string }): Promise<User> => {
     const http: HTTP = new HTTP();
-    return await http.get(`${ENDPOINTS.USERS.GET_USERS}${data.id}`);
+    return await http.get(`${ENDPOINTS.USERS.GET}${data.id}`);
   },
 };

@@ -9,17 +9,17 @@ export const AlbumsMutation: {
 } = {
   createAlbum: async (_: null, data: Album, context: IContext) => {
     const http: HTTP = new HTTP();
-    return await http.post(ENDPOINTS.ALBUMS.SAVE, data, context);
+    return await http.post(ENDPOINTS.ALBUMS, data, context);
   },
   updateAlbum: async (_: null, data: any, context: IContext) => {
     const { albumId }: { albumId: string } = data;
     const http: HTTP = new HTTP();
-    return await http.put(`${ENDPOINTS.ALBUMS.UPDATE}${albumId}`, data, context);
+    return await http.put(`${ENDPOINTS.ALBUMS}${albumId}`, data, context);
   },
   deleteAlbum: async (_: null, data: { albumId: string }, context: IContext) => {
     const { albumId }: { albumId: string } = data;
     const http: HTTP = new HTTP();
-    return await http.delete(`${ENDPOINTS.ALBUMS.UPDATE}${albumId}`, data, context);
+    return await http.delete(`${ENDPOINTS.ALBUMS}${albumId}`, data, context);
   },
 };
 
@@ -29,12 +29,12 @@ export const AlbumsQuery: {
 } = {
   getAlbums: async (): Promise<Album[]> => {
     const http: HTTP = new HTTP();
-    const data = await http.get(ENDPOINTS.ALBUMS.GET);
+    const data = await http.get(ENDPOINTS.ALBUMS);
     return data.items;
   },
   getAlbumById: async (_: null, data: { id: string }) => {
     const { id }: { id: string } = data;
     const http: HTTP = new HTTP();
-    return await http.get(`${ENDPOINTS.ALBUMS.GET}${id}`);
+    return await http.get(`${ENDPOINTS.ALBUMS}${id}`);
   },
 };

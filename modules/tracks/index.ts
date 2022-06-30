@@ -20,7 +20,7 @@ export const TracksQuery: {
 } = {
   getTracks: async (): Promise<Track[]> => {
     const http: HTTP = new HTTP();
-    const data = await http.get(ENDPOINTS.GET_TRACKS);
+    const data = await http.get(ENDPOINTS.TRACKS);
     return data.items;
   },
 };

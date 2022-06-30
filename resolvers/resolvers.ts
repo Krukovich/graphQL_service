@@ -17,11 +17,6 @@ export const resolvers = {
     ...AlbumsQuery,
     ...TracksQuery,
     ...FavoritesQuery,
-    getJWT: async (): Promise<string> => {
-      const http: HTTP = new HTTP();
-      const data = await http.get(ENDPOINTS.GET_JWT);
-      return data.items;
-    },
   },
   Mutation: {
     ...UsersMutations,

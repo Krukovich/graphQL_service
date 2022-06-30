@@ -20,7 +20,7 @@ export const BandsQuery: {
 } = {
   getBands: async (): Promise<Band[]> => {
     const http: HTTP = new HTTP();
-    const data = await http.get(ENDPOINTS.GET_BANDS);
+    const data = await http.get(ENDPOINTS.BANDS);
     return data.items;
   },
 };

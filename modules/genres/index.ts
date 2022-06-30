@@ -20,7 +20,7 @@ export const GenresQuery: {
 } = {
   getGenres: async (): Promise<Genre[]> => {
     const http: HTTP = new HTTP();
-    const data = await http.get(ENDPOINTS.GET_GENRES);
+    const data = await http.get(ENDPOINTS.GENRES);
     return data.items;
   },
 };
