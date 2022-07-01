@@ -1,5 +1,5 @@
 import { Band, Genre, IContext } from '../../interfaces';
-import HTTP from '../../service';
+import http from '../../service';
 import { ENDPOINTS } from '../../constatns';
 
 export const GenresMutation: {
@@ -7,16 +7,13 @@ export const GenresMutation: {
   updateGenre: (_: null, data: Band, context: IContext) => Promise<Genre>;
   deleteGenre: (_: null, data: Band, context: IContext) => Promise<Genre>;
 } = {
-  createGenre: async (_: null, data: Band, context: IContext) => {
-    const http: HTTP = new HTTP();
+  createGenre: async (_: null, data: Band, context: IContext): Promise<Genre> => {
     return await http.post(ENDPOINTS.GENRES, data, context);
   },
-  updateGenre: async (_: null, data: Band, context: IContext) => {
-    const http: HTTP = new HTTP();
+  updateGenre: async (_: null, data: Band, context: IContext): Promise<Genre> => {
     return await http.put(ENDPOINTS.GENRES, data, context);
   },
-  deleteGenre: async (_: null, data: Band, context: IContext) => {
-    const http: HTTP = new HTTP();
+  deleteGenre: async (_: null, data: Band, context: IContext): Promise<Genre> => {
     return await http.delete(ENDPOINTS.GENRES, data, context);
   },
 };
@@ -26,13 +23,11 @@ export const GenresQuery: {
   getGenreById: (_: null, data: { id: string }) => Promise<Genre>;
 } = {
   getGenres: async (): Promise<Genre[]> => {
-    const http: HTTP = new HTTP();
     const data = await http.get(ENDPOINTS.GENRES);
     return data.items;
   },
   getGenreById: async (_: null, data: { id: string }): Promise<Genre> => {
     const { id }: { id: string } = data;
-    const http: HTTP = new HTTP();
     return await http.get(`${ENDPOINTS.GENRES}${id}`);
   },
 };

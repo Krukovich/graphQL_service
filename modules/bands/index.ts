@@ -1,5 +1,5 @@
 import { Band, IContext } from '../../interfaces';
-import HTTP from '../../service';
+import http from '../../service';
 import { ENDPOINTS } from '../../constatns';
 
 export const BandsMutation: {
@@ -7,16 +7,13 @@ export const BandsMutation: {
   updateBand: (_: null, data: Band, context: IContext) => Promise<Band>;
   deleteBand: (_: null, data: Band, context: IContext) => Promise<Band>;
 } = {
-  createBand: async (_: null, data: Band, context: IContext) => {
-    const http: HTTP = new HTTP();
+  createBand: async (_: null, data: Band, context: IContext): Promise<Band> => {
     return await http.post(ENDPOINTS.BANDS, data, context);
   },
-  updateBand: async (_: null, data: Band, context: IContext) => {
-    const http: HTTP = new HTTP();
+  updateBand: async (_: null, data: Band, context: IContext): Promise<Band> => {
     return await http.put(ENDPOINTS.BANDS, data, context);
   },
-  deleteBand: async (_: null, data: Band, context: IContext) => {
-    const http: HTTP = new HTTP();
+  deleteBand: async (_: null, data: Band, context: IContext): Promise<Band> => {
     return await http.delete(ENDPOINTS.BANDS, data, context);
   },
 };
@@ -26,13 +23,11 @@ export const BandsQuery: {
   getBandById: (_: null, data: { id: string }) => Promise<Band>;
 } = {
   getBands: async (): Promise<Band[]> => {
-    const http: HTTP = new HTTP();
     const data = await http.get(ENDPOINTS.BANDS);
     return data.items;
   },
-  getBandById: async (_: null, data: { id: string }) => {
+  getBandById: async (_: null, data: { id: string }): Promise<Band> => {
     const { id }: { id: string } = data;
-    const http: HTTP = new HTTP();
     return await http.get(`${ENDPOINTS.BANDS}${id}`);
   },
 };
