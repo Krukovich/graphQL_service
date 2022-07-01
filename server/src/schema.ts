@@ -8,7 +8,6 @@ export const typeDefs = gql`
     getBands: [Band]
     getAlbums: [Album]
     getFavourites: [Favourites]
-
     getUserById(id: String!): User
     getAlbumById(id: String!): Album
     getArtistById(id: String!): Artist
@@ -43,7 +42,7 @@ export const typeDefs = gql`
 
     createAlbum(
       name: String!
-      released: String
+      released: Int
       artistsIds: [String]
       bandsIds: [String]
       trackIds: [String]
@@ -74,7 +73,7 @@ export const typeDefs = gql`
     deleteArtistFromFavourites(id: String!): Favourites
     deleteGenreFromFavourites(id: String!): Favourites
 
-    createGenre(name: String!, description: String, country: String, year: String): Genre
+    createGenre(name: String!, description: String, country: String, year: Int): Genre
     updateGenre(name: String, description: String, country: String, year: String): Genre
     deleteGenre(id: String!): Genre
 
