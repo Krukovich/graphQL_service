@@ -4,15 +4,15 @@ import { ENDPOINTS } from '../../constatns';
 
 export const AlbumsMutation: {
   createAlbum: (_: null, data: Album, context: IContext) => Promise<Album>;
-  updateAlbum: (_: null, data: any, context: IContext) => Promise<Album>;
+  updateAlbum: (_: null, data: Album, context: IContext) => Promise<Album>;
   deleteAlbum: (_: null, data: { albumId: string }, context: IContext) => Promise<void>;
 } = {
   createAlbum: async (_: null, data: Album, context: IContext): Promise<Album> => {
     return await http.post(ENDPOINTS.ALBUMS, data, context);
   },
-  updateAlbum: async (_: null, data: any, context: IContext): Promise<Album> => {
-    const { albumId }: { albumId: string } = data;
-    return await http.put(`${ENDPOINTS.ALBUMS}${albumId}`, data, context);
+  updateAlbum: async (_: null, data: Album, context: IContext): Promise<Album> => {
+    const { id }: { id: string } = data;
+    return await http.put(`${ENDPOINTS.ALBUMS}${id}`, data, context);
   },
   deleteAlbum: async (_: null, data: { albumId: string }, context: IContext): Promise<void> => {
     const { albumId }: { albumId: string } = data;

@@ -5,15 +5,16 @@ import { ENDPOINTS } from '../../constatns';
 export const TracksMutation: {
   createTrack: (_: null, data: Track, context: IContext) => Promise<Track>;
   updateTrack: (_: null, data: Track, context: IContext) => Promise<Track>;
-  deleteTrack: (_: null, data: Track, context: IContext) => Promise<Track>;
+  deleteTrack: (_: null, data: Track, context: IContext) => Promise<void>;
 } = {
   createTrack: async (_: null, data: Track, context: IContext): Promise<Track> => {
     return await http.post(ENDPOINTS.TRACKS, data, context);
   },
   updateTrack: async (_: null, data: Track, context: IContext): Promise<Track> => {
-    return await http.put(ENDPOINTS.TRACKS, data, context);
+    const { id }: { id: string } = data;
+    return await http.put(`${ENDPOINTS.TRACKS}${id}`, data, context);
   },
-  deleteTrack: async (_: null, data: Track, context: IContext): Promise<Track> => {
+  deleteTrack: async (_: null, data: Track, context: IContext): Promise<void> => {
     return await http.delete(ENDPOINTS.TRACKS, data, context);
   },
 };

@@ -11,7 +11,8 @@ export const ArtistMutation: {
     return await http.post(ENDPOINTS.ARTIST, data, context);
   },
   updateArtist: async (_: null, data: Artist, context: IContext): Promise<Artist> => {
-    return await http.put(ENDPOINTS.ARTIST, data, context);
+    const { id }: { id: string } = data;
+    return await http.put(`${ENDPOINTS.ARTIST}${id}`, data, context);
   },
   deleteArtist: async (_: null, data: { artistId: string }, context: IContext): Promise<void> => {
     const { artistId }: { artistId: string } = data;

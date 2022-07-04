@@ -1,5 +1,3 @@
-import HTTP from '../service';
-import { ENDPOINTS } from '../constatns';
 import { ArtistMutation, ArtistQuery } from '../modules/artists';
 import { UsersMutations, UsersQuery } from '../modules/users';
 import { GenresMutation, GenresQuery } from '../modules/genres';

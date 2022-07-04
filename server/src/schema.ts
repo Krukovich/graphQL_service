@@ -29,6 +29,7 @@ export const typeDefs = gql`
       instruments: [String]
     ): Artist
     updateArtist(
+      id: String!
       firstName: String
       secondName: String
       middleName: String
@@ -49,9 +50,9 @@ export const typeDefs = gql`
       genresIds: [String]
     ): Album
     updateAlbum(
-      albumId: String!
+      id: String!
       name: String
-      released: String
+      released: Int
       artistsIds: [String]
       bandsIds: [String]
       trackIds: [String]
@@ -60,7 +61,7 @@ export const typeDefs = gql`
     deleteAlbum(albumId: String!): Album
 
     createBand(name: String!, origin: String, website: String, genresIds: [String]): Band
-    updateBand(name: String, origin: String, website: String, genresIds: [String]): Band
+    updateBand(id: String!, name: String, origin: String, website: String, genresIds: [String]): Band
     deleteBand(id: String!): Band
 
     addTrackToFavourites(id: String!, type: String!): Favourites
@@ -74,7 +75,7 @@ export const typeDefs = gql`
     deleteGenreFromFavourites(id: String!): Favourites
 
     createGenre(name: String!, description: String, country: String, year: Int): Genre
-    updateGenre(name: String, description: String, country: String, year: String): Genre
+    updateGenre(id: String!, name: String, description: String, country: String, year: Int): Genre
     deleteGenre(id: String!): Genre
 
     createTrack(
@@ -169,7 +170,7 @@ export const typeDefs = gql`
     birthPlace: String
     country: String
     bands: [ID]
-    instruments: String
+    instruments: [String]
   }
 
   type Member {

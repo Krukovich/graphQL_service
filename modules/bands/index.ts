@@ -5,15 +5,16 @@ import { ENDPOINTS } from '../../constatns';
 export const BandsMutation: {
   createBand: (_: null, data: Band, context: IContext) => Promise<Band>;
   updateBand: (_: null, data: Band, context: IContext) => Promise<Band>;
-  deleteBand: (_: null, data: Band, context: IContext) => Promise<Band>;
+  deleteBand: (_: null, data: Band, context: IContext) => Promise<void>;
 } = {
   createBand: async (_: null, data: Band, context: IContext): Promise<Band> => {
     return await http.post(ENDPOINTS.BANDS, data, context);
   },
   updateBand: async (_: null, data: Band, context: IContext): Promise<Band> => {
-    return await http.put(ENDPOINTS.BANDS, data, context);
+    const { id }: { id: string } = data;
+    return await http.put(`${ENDPOINTS.BANDS}${id}`, data, context);
   },
-  deleteBand: async (_: null, data: Band, context: IContext): Promise<Band> => {
+  deleteBand: async (_: null, data: Band, context: IContext): Promise<void> => {
     return await http.delete(ENDPOINTS.BANDS, data, context);
   },
 };

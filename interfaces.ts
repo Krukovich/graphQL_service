@@ -1,5 +1,6 @@
 export interface Artist {
   _id: string;
+  id: string;
   firstName: string;
   secondName: string;
   middleName: string;
@@ -21,6 +22,7 @@ export interface User {
 
 export interface Band {
   _id: string;
+  id: string;
   name: string;
   origin: string;
   membersId: Member[];
@@ -37,6 +39,7 @@ export interface Member {
 
 export interface Genre {
   _id: string;
+  id: string;
   name: string;
   description: string;
   country: string;
@@ -45,6 +48,7 @@ export interface Genre {
 
 export interface Track {
   _id: string;
+  id: string;
   title: string;
   albumId: string;
   bandsIds: string[];
@@ -55,6 +59,7 @@ export interface Track {
 
 export interface Album {
   _id: string;
+  id: string;
   name: string;
   released: number;
   artistsIds: string[];

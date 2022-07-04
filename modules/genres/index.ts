@@ -1,19 +1,20 @@
-import { Band, Genre, IContext } from '../../interfaces';
+import { Genre, IContext } from '../../interfaces';
 import http from '../../service';
 import { ENDPOINTS } from '../../constatns';
 
 export const GenresMutation: {
-  createGenre: (_: null, data: Band, context: IContext) => Promise<Genre>;
-  updateGenre: (_: null, data: Band, context: IContext) => Promise<Genre>;
-  deleteGenre: (_: null, data: Band, context: IContext) => Promise<Genre>;
+  createGenre: (_: null, data: Genre, context: IContext) => Promise<Genre>;
+  updateGenre: (_: null, data: Genre, context: IContext) => Promise<Genre>;
+  deleteGenre: (_: null, data: Genre, context: IContext) => Promise<void>;
 } = {
-  createGenre: async (_: null, data: Band, context: IContext): Promise<Genre> => {
+  createGenre: async (_: null, data: Genre, context: IContext): Promise<Genre> => {
     return await http.post(ENDPOINTS.GENRES, data, context);
   },
-  updateGenre: async (_: null, data: Band, context: IContext): Promise<Genre> => {
-    return await http.put(ENDPOINTS.GENRES, data, context);
+  updateGenre: async (_: null, data: Genre, context: IContext): Promise<Genre> => {
+    const { id }: { id: string } = data;
+    return await http.put(`${ENDPOINTS.GENRES}${id}`, data, context);
   },
-  deleteGenre: async (_: null, data: Band, context: IContext): Promise<Genre> => {
+  deleteGenre: async (_: null, data: Genre, context: IContext): Promise<void> => {
     return await http.delete(ENDPOINTS.GENRES, data, context);
   },
 };
