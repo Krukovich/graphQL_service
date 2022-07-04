@@ -14,8 +14,9 @@ export const TracksMutation: {
     const { id }: { id: string } = data;
     return await http.put(`${ENDPOINTS.TRACKS}${id}`, data, context);
   },
-  deleteTrack: async (_: null, data: Track, context: IContext): Promise<void> => {
-    return await http.delete(ENDPOINTS.TRACKS, data, context);
+  deleteTrack: async (_: null, data: { id: string }, context: IContext): Promise<void> => {
+    const { id }: { id: string } = data;
+    return await http.delete(`${ENDPOINTS.TRACKS}${id}`, data, context);
   },
 };
 

@@ -15,7 +15,8 @@ export const BandsMutation: {
     return await http.put(`${ENDPOINTS.BANDS}${id}`, data, context);
   },
   deleteBand: async (_: null, data: Band, context: IContext): Promise<void> => {
-    return await http.delete(ENDPOINTS.BANDS, data, context);
+    const { id }: { id: string } = data;
+    return await http.delete(`${ENDPOINTS.BANDS}${id}`, data, context);
   },
 };
 

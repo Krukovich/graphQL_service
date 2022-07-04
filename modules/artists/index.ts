@@ -5,7 +5,7 @@ import { ENDPOINTS } from '../../constatns';
 export const ArtistMutation: {
   createArtist: (_: null, data: Artist, context: IContext) => Promise<Artist>;
   updateArtist: (_: null, data: Artist, context: IContext) => Promise<Artist>;
-  deleteArtist: (_: null, data: { artistId: string }, context: IContext) => Promise<void>;
+  deleteArtist: (_: null, data: { id: string }, context: IContext) => Promise<void>;
 } = {
   createArtist: async (_: null, data: Artist, context: IContext): Promise<Artist> => {
     return await http.post(ENDPOINTS.ARTIST, data, context);
@@ -14,9 +14,9 @@ export const ArtistMutation: {
     const { id }: { id: string } = data;
     return await http.put(`${ENDPOINTS.ARTIST}${id}`, data, context);
   },
-  deleteArtist: async (_: null, data: { artistId: string }, context: IContext): Promise<void> => {
-    const { artistId }: { artistId: string } = data;
-    return await http.delete(`${ENDPOINTS.ARTIST}${artistId}`, data, context);
+  deleteArtist: async (_: null, data: { id: string }, context: IContext): Promise<void> => {
+    const { id }: { id: string } = data;
+    return await http.delete(`${ENDPOINTS.ARTIST}${id}`, data, context);
   },
 };
 

@@ -15,7 +15,8 @@ export const GenresMutation: {
     return await http.put(`${ENDPOINTS.GENRES}${id}`, data, context);
   },
   deleteGenre: async (_: null, data: Genre, context: IContext): Promise<void> => {
-    return await http.delete(ENDPOINTS.GENRES, data, context);
+    const { id }: { id: string } = data;
+    return await http.delete(`${ENDPOINTS.GENRES}${id}`, data, context);
   },
 };
 
