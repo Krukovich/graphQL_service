@@ -1,7 +1,7 @@
 ## Install Application
 1. ```npm install```
-2. Rename ```.env.example``` to ```.env```
-3. Pass variables
+2. rename ```.env.example``` to ```.env```
+3. pass variables
 ```
 PORT=4000
 API_URL=http://localhost
@@ -18,5 +18,5 @@ PORT_FAVOURITES=3007
 
 ## Run Application
 1. ```npm run start:dev```
-2. open browser and pass ```http://localhost:4000/``` for work with GraphQl
+2. open browser and pass ```http://localhost:4000/``` for work with GraphQL
 3. open browser and pass ```http://localhost:8081/``` for check and work with MongoDB instance on docker
