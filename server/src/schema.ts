@@ -87,6 +87,7 @@ export const typeDefs = gql`
       genresIds: [String!]
     ): Track
     updateTrack(
+      id: String!
       title: String!
       albumId: String
       bandsIds: [String]
