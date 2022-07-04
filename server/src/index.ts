@@ -1,12 +1,13 @@
 import { ApolloServer } from 'apollo-server';
 import { typeDefs } from './schema';
 import { resolvers } from '../../resolvers/resolvers';
+import { IncomingMessage } from 'http';
 import 'dotenv/config';
 
 const server: ApolloServer = new ApolloServer({
   typeDefs,
   resolvers,
-  context: ({ req }: { req: any }) => {
+  context: ({ req }: { req: IncomingMessage }) => {
     return {
       token: req.headers.authorization || '',
     };

@@ -7,14 +7,13 @@ export const typeDefs = gql`
     getTracks: [Track]
     getBands: [Band]
     getAlbums: [Album]
-    getFavourites: [Favourites]
+    getFavourites: Favourites
     getUserById(id: String!): User
     getAlbumById(id: String!): Album
     getArtistById(id: String!): Artist
     getBandById(id: String!): Album
     getGenreById(id: String!): Genre
     getTrackById(id: String!): Track
-    getFavouriteById(id: String!): Favourites
   }
 
   type Mutation {

@@ -81,3 +81,8 @@ export interface Favorite {
 export interface IContext {
   token: string;
 }
+
+export interface IFavourites {
+  id: string;
+  type: 'bands' | 'genres' | 'artists' | 'tracks';
+}

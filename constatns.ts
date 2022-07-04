@@ -18,7 +18,8 @@ export const ENDPOINTS = {
   FAVOURITES: {
     GET: `${API_URL}:${PORT_FAVOURITES}/v1/favourites/`,
     ADD: `${API_URL}:${PORT_FAVOURITES}/v1/favourites/add`,
-    DELETE: `${API_URL}:${PORT_FAVOURITES}/v1/favourites/remove`,
+    PUT: `${API_URL}:${PORT_FAVOURITES}/v1/favourites/remove`,
+    DELETE: `${API_URL}:${PORT_FAVOURITES}/v1/favourites/`,
   },
   ARTIST: `${API_URL}:${PORT_ARTIST}/v1/artists/`,
   ALBUMS: `${API_URL}:${PORT_ALBUM}/v1/albums/`,
