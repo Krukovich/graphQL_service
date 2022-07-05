@@ -6,7 +6,6 @@ import { albumsMutation, albumsQuery } from '../modules/albums';
 import { tracksMutation, tracksQuery } from '../modules/tracks';
 import { favouritesMutation, favoritesQuery } from '../modules/favourites';
 
-// TODO ADD PAGINATION
 // TODO ADD FULL RESOLVERS
 // TODO TRY GET ALL DATA WITH ANOTHER RESOLVERS
 export const resolvers = {

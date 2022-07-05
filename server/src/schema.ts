@@ -2,11 +2,11 @@ import { gql } from 'apollo-server';
 
 export const typeDefs = gql`
   type Query {
-    getArtist: [Artist]
-    getGenres: [Genre]
-    getTracks: [Track]
-    getBands: [Band]
-    getAlbums: [Album]
+    getArtist(limit: Int, offset: Int): [Artist]
+    getGenres(limit: Int, offset: Int): [Genre]
+    getTracks(limit: Int, offset: Int): [Track]
+    getBands(limit: Int, offset: Int): [Band]
+    getAlbums(limit: Int, offset: Int): [Album]
     getFavourites: Favourites
     getUserById(id: String!): User
     getAlbumById(id: String!): Album
@@ -27,6 +27,7 @@ export const typeDefs = gql`
       bandsIds: [String]
       instruments: [String]
     ): Artist
+
     updateArtist(
       id: String!
       firstName: String
@@ -38,6 +39,7 @@ export const typeDefs = gql`
       bandsIds: [String]
       instruments: [String]
     ): Artist
+
     deleteArtist(id: String!): Artist
 
     createAlbum(
@@ -48,6 +50,7 @@ export const typeDefs = gql`
       trackIds: [String]
       genresIds: [String]
     ): Album
+
     updateAlbum(
       id: String!
       name: String
@@ -57,9 +60,11 @@ export const typeDefs = gql`
       trackIds: [String]
       genresIds: [String]
     ): Album
-    deleteAlbum(albumId: String!): Album
+
+    deleteAlbum(id: String!): Album
 
     createBand(name: String!, origin: String, members: [InputMember], website: String, genresIds: [String]): Band
+
     updateBand(
       id: String!
       name: String
@@ -68,6 +73,7 @@ export const typeDefs = gql`
       website: String
       genresIds: [String]
     ): Band
+
     deleteBand(id: String!): Band
 
     addTrackToFavourites(id: String!, type: String!): Favourites
@@ -93,6 +99,7 @@ export const typeDefs = gql`
       released: Int!
       genresIds: [String!]
     ): Track
+
     updateTrack(
       id: String!
       title: String!
@@ -103,6 +110,7 @@ export const typeDefs = gql`
       released: Int!
       genresIds: [String!]
     ): Track
+
     deleteTrack(id: String!): Track
 
     register(firstName: String!, lastName: String!, password: String!, email: String!): User

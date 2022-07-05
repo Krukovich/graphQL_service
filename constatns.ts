@@ -21,11 +21,11 @@ export const ENDPOINTS = {
     PUT: `${API_URL}:${PORT_FAVOURITES}/v1/favourites/remove`,
     DELETE: `${API_URL}:${PORT_FAVOURITES}/v1/favourites/`,
   },
-  ARTIST: `${API_URL}:${PORT_ARTIST}/v1/artists/`,
-  ALBUMS: `${API_URL}:${PORT_ALBUM}/v1/albums/`,
-  GENRES: `${API_URL}:${PORT_GENRE}/v1/genres/`,
-  TRACKS: `${API_URL}:${PORT_TRACK}/v1/tracks/`,
-  BANDS: `${API_URL}:${PORT_BAND}/v1/bands/`,
+  ARTIST: `${API_URL}:${PORT_ARTIST}/v1/artists`,
+  ALBUMS: `${API_URL}:${PORT_ALBUM}/v1/albums`,
+  GENRES: `${API_URL}:${PORT_GENRE}/v1/genres`,
+  TRACKS: `${API_URL}:${PORT_TRACK}/v1/tracks`,
+  BANDS: `${API_URL}:${PORT_BAND}/v1/bands`,
 };
 
 export const METHOD: { GET: string; POST: string; PUT: string; DELETE: string } = {
