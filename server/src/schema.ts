@@ -109,11 +109,12 @@ export const typeDefs = gql`
   type Track {
     _id: ID!
     title: String
-    albums: String
-    bands: [Band]
+    albumId: String
+    bandsIds: [String]
+    genresIds: [String]
+    artistsIds: [String]
     duration: Int
     released: Int
-    genres: [Genre]
   }
 
   type User {
@@ -129,10 +130,10 @@ export const typeDefs = gql`
     _id: ID
     name: String
     released: Int
-    artists: [Artist]
-    bands: [Band]
-    tracks: [Track]
-    genres: [Genre]
+    artistsIds: [String]
+    bandsIds: [String]
+    trackIds: [String]
+    genresIds: [String]
     image: String
   }
 
@@ -158,7 +159,7 @@ export const typeDefs = gql`
     origin: String
     members: [Member]
     website: String
-    genres: String
+    genresIds: [String]
   }
 
   type Artist {
@@ -169,7 +170,7 @@ export const typeDefs = gql`
     birthDate: String
     birthPlace: String
     country: String
-    bands: [ID]
+    bandsIds: [String]
     instruments: [String]
   }
 
