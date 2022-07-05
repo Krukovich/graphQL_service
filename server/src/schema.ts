@@ -24,7 +24,7 @@ export const typeDefs = gql`
       birthDate: String
       birthPlace: String
       country: String!
-      bands: [String]
+      bandsIds: [String]
       instruments: [String]
     ): Artist
     updateArtist(
@@ -35,7 +35,7 @@ export const typeDefs = gql`
       birthDate: String
       birthPlace: String
       country: String
-      bands: [String]
+      bandsIds: [String]
       instruments: [String]
     ): Artist
     deleteArtist(id: String!): Artist

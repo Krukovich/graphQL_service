@@ -23,17 +23,18 @@ PORT_FAVOURITES=3007
 
 1. `npm run start:dev`
 2. open browser and pass `http://localhost:4000/` for work with GraphQL
-3. open browser and pass `http://localhost:8081/` for check and work with MongoDB instance on docker
+3. open browser and pass `http://localhost:8081/` for check and work with MongoDB instance in docker
 
 ## Use Application
 
 1. open browser and pass `http://localhost:4000/` for work with GraphQL
 2. use mutation `register` and pass variables, below will be the steps and examples
+   ![](assets/img/variables.png)
    ```
    {
      "firstName": "Example",
      "lastName": "Example",
-     "password": "pawwrod123",
+     "password": "password123",
      "email": "Example@Example.com"
     }
    ```
@@ -65,7 +66,7 @@ PORT_FAVOURITES=3007
      "year": 2002
     }
    ```
-6. use mutation `createBands` and use `genresIds` which you got in the first step
+6. use mutation `createBands` and use `genresIds` which you got in the 5 step
    ```
    {
      "name": "Example",
@@ -74,4 +75,44 @@ PORT_FAVOURITES=3007
      "genresIds": ["62c3f386b674c8a552f4890e"]
    }
    ```
-7. use mutation
+7. use mutation `createArtist` and use `bandsIds` which you got in the 6 step
+   ```
+   {
+     "firstName": "Example",
+     "secondName": "Example",
+     "country": "Example",
+     "middleName": "Example",
+     "birthDate": "11/03/1987",
+     "birthPlace": "Example",
+     "bandsIds": ["62c3f386b674c8a552f4890e"],
+     "instruments": [
+       "Example"
+     ]
+   }
+   ```
+8. use mutation `createTracks` and use all ID what did you get before
+   ```
+   {
+     "title": "Example",
+     "duration": 333,
+     "released": 1,
+     "albumId": "62c3f386b674c8a552f4890e",
+     "bandsIds": ["62c3f386b674c8a552f4890e"],
+     "artistsIds": ["62c3f386b674c8a552f4890e"],
+     "genresIds": ["62c3f386b674c8a552f4890e"]
+   }
+   ```
+9. use mutation `createAlbum` and use all ID what did you get before
+   ```
+   {
+     "name": "Example",
+     "released": 1,
+     "artistsIds": ["62c3f386b674c8a552f4890e"],
+     "bandsIds": ["62c3f386b674c8a552f4890e"],
+     "trackIds": ["62c3f386b674c8a552f4890e"],
+     "genresIds": ["62c3f386b674c8a552f4890e"]
+   }
+   ```
+10. Now you have a completed database, you can make requests to remove updates or select by ID
+
+## Have fun :)
