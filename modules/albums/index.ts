@@ -2,7 +2,7 @@ import { Album, IContext } from '../../interfaces';
 import http from '../../service';
 import { ENDPOINTS } from '../../constatns';
 
-export const AlbumsMutation: {
+export const albumsMutation: {
   createAlbum: (_: null, data: Album, context: IContext) => Promise<Album>;
   updateAlbum: (_: null, data: Album, context: IContext) => Promise<Album>;
   deleteAlbum: (_: null, data: { albumId: string }, context: IContext) => Promise<void>;
@@ -20,7 +20,7 @@ export const AlbumsMutation: {
   },
 };
 
-export const AlbumsQuery: {
+export const albumsQuery: {
   getAlbums: () => Promise<Album[]>;
   getAlbumById: (_: null, data: { id: string }) => Promise<Album>;
 } = {

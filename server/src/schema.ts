@@ -59,8 +59,15 @@ export const typeDefs = gql`
     ): Album
     deleteAlbum(albumId: String!): Album
 
-    createBand(name: String!, origin: String, website: String, genresIds: [String]): Band
-    updateBand(id: String!, name: String, origin: String, website: String, genresIds: [String]): Band
+    createBand(name: String!, origin: String, members: [InputMember], website: String, genresIds: [String]): Band
+    updateBand(
+      id: String!
+      name: String
+      origin: String
+      members: [InputMember]
+      website: String
+      genresIds: [String]
+    ): Band
     deleteBand(id: String!): Band
 
     addTrackToFavourites(id: String!, type: String!): Favourites
@@ -179,5 +186,24 @@ export const typeDefs = gql`
     artist: Artist
     instrument: String
     years: String
+  }
+
+  input InputMember {
+    _id: ID!
+    artist: InputArtist
+    instrument: String
+    years: String
+  }
+
+  input InputArtist {
+    _id: ID!
+    firstName: String
+    secondName: String
+    middleName: String
+    birthDate: String
+    birthPlace: String
+    country: String
+    bandsIds: [String]
+    instruments: [String]
   }
 `;

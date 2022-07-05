@@ -2,7 +2,7 @@ import { Genre, IContext } from '../../interfaces';
 import http from '../../service';
 import { ENDPOINTS } from '../../constatns';
 
-export const GenresMutation: {
+export const genresMutation: {
   createGenre: (_: null, data: Genre, context: IContext) => Promise<Genre>;
   updateGenre: (_: null, data: Genre, context: IContext) => Promise<Genre>;
   deleteGenre: (_: null, data: Genre, context: IContext) => Promise<void>;
@@ -20,7 +20,7 @@ export const GenresMutation: {
   },
 };
 
-export const GenresQuery: {
+export const genresQuery: {
   getGenres: () => Promise<Genre[]>;
   getGenreById: (_: null, data: { id: string }) => Promise<Genre>;
 } = {

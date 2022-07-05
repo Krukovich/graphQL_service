@@ -2,7 +2,7 @@ import { IContext, User } from '../../interfaces';
 import http from '../../service';
 import { ENDPOINTS } from '../../constatns';
 
-export const UsersMutations: {
+export const usersMutations: {
   register: (_: null, data: User, context: IContext) => Promise<User>;
   login: (_: null, data: { email: string; password: string }, context: IContext) => Promise<{ jwt: string }>;
 } = {
@@ -14,7 +14,7 @@ export const UsersMutations: {
   },
 };
 
-export const UsersQuery: {
+export const usersQuery: {
   getUserById: (_: null, data: { id: string }) => Promise<User>;
 } = {
   getUserById: async (_: null, data: { id: string }): Promise<User> => {

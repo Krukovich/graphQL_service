@@ -2,7 +2,7 @@ import { Artist, IContext } from '../../interfaces';
 import http from '../../service';
 import { ENDPOINTS } from '../../constatns';
 
-export const ArtistMutation: {
+export const artistMutation: {
   createArtist: (_: null, data: Artist, context: IContext) => Promise<Artist>;
   updateArtist: (_: null, data: Artist, context: IContext) => Promise<Artist>;
   deleteArtist: (_: null, data: { id: string }, context: IContext) => Promise<void>;
@@ -20,7 +20,7 @@ export const ArtistMutation: {
   },
 };
 
-export const ArtistQuery: {
+export const artistQuery: {
   getArtist: () => Promise<Artist[]>;
   getArtistById: (_: null, data: { id: string }) => Promise<Artist>;
 } = {

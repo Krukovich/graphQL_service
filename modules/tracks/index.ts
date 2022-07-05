@@ -2,7 +2,7 @@ import { IContext, Track } from '../../interfaces';
 import http from '../../service';
 import { ENDPOINTS } from '../../constatns';
 
-export const TracksMutation: {
+export const tracksMutation: {
   createTrack: (_: null, data: Track, context: IContext) => Promise<Track>;
   updateTrack: (_: null, data: Track, context: IContext) => Promise<Track>;
   deleteTrack: (_: null, data: Track, context: IContext) => Promise<void>;
@@ -20,7 +20,7 @@ export const TracksMutation: {
   },
 };
 
-export const TracksQuery: {
+export const tracksQuery: {
   getTracks: () => Promise<Track[]>;
   getTrackById: (_: null, data: { id: string }) => Promise<Track>;
 } = {

@@ -13,6 +13,7 @@ class HTTP {
         Authorization: context && context.token ? context.token : '',
       },
     });
+
     return response.json();
   }
 

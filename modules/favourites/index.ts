@@ -2,7 +2,7 @@ import { Favorite, IContext, IFavourites } from '../../interfaces';
 import http from '../../service';
 import { ENDPOINTS } from '../../constatns';
 
-export const FavouritesMutation: {
+export const favouritesMutation: {
   addTrackToFavourites: (_: null, data: IFavourites, context: IContext) => Promise<Favorite>;
   addBandToFavourites: (_: null, data: IFavourites, context: IContext) => Promise<Favorite>;
   addArtistToFavourites: (_: null, data: IFavourites, context: IContext) => Promise<Favorite>;
@@ -42,7 +42,7 @@ export const FavouritesMutation: {
   },
 };
 
-export const FavoritesQuery: {
+export const favoritesQuery: {
   getFavourites: (_: null, data: null, context: IContext) => Promise<Favorite[]>;
 } = {
   getFavourites: async (_: null, data: null, context: IContext): Promise<Favorite[]> => {
