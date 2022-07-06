@@ -33,12 +33,12 @@ export const typeTrack = gql`
 
   type Track {
     _id: ID!
-    title: String
-    albumId: String
-    bandsIds: [String]
-    genresIds: [String]
-    artistsIds: [String]
+    title: String!
+    album: Album
+    artists: [Artist]
+    bands: [Band]
     duration: Int
     released: Int
+    genres: [Genre]
   }
 `;
