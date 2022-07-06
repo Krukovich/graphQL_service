@@ -95,3 +95,19 @@ export interface IResponseFavourites {
   artistsIds: string[];
   tracksIds: string[];
 }
+
+export interface Items {
+  _id: string;
+  firstName: string;
+  secondName: string;
+  middleName: string;
+  birthDate: string;
+  birthPlace: string;
+  country: string;
+  bandsIds: string[];
+  instruments: string[];
+}
+
+export interface IResponseArtist {
+  items: Items[];
+}

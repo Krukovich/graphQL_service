@@ -174,7 +174,7 @@ export const typeDefs = gql`
     origin: String
     members: [Member]
     website: String
-    genresIds: [String]
+    genres: [Genre]
   }
 
   type Artist {
@@ -185,13 +185,13 @@ export const typeDefs = gql`
     birthDate: String
     birthPlace: String
     country: String
-    bandsIds: [String]
+    bands: [Band]
     instruments: [String]
   }
 
   type Member {
     _id: ID!
-    artist: Artist
+    artist: String
     instrument: String
     years: String
   }
