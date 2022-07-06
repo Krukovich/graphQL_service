@@ -1,4 +1,4 @@
-import { Artist, IContext, IResponseArtist, Items } from '../../interfaces';
+import { Artist, IContext, IResponse } from '../../interfaces';
 import http from '../../service';
 import { ENDPOINTS } from '../../constatns';
 import { checkParams, insertQueryParamsInURL } from '../../utils';
@@ -24,8 +24,8 @@ export const artistMutation: {
 };
 
 export const artistQuery: {
-  getArtist: (_: null, data: { limit: number; offset: number }) => any;
-  getArtistById: (_: null, data: { id: string }) => any;
+  getArtist: (_: null, data: { limit: number; offset: number }) => Promise<Artist[]>;
+  getArtistById: (_: null, data: { id: string }) => Promise<Artist>;
 } = {
   getArtist: async (_: null, data: { limit: number; offset: number }) => {
     const { limit, offset }: { limit: number; offset: number } = data;
@@ -34,11 +34,9 @@ export const artistQuery: {
       offset,
       url: `${ENDPOINTS.ARTIST}`,
     };
-    const response: IResponseArtist = await http.get(
-      checkParams(limit, offset) ? insertQueryParamsInURL(arg) : arg.url,
-    );
+    const response: IResponse = await http.get(checkParams(limit, offset) ? insertQueryParamsInURL(arg) : arg.url);
 
-    return response.items.map((item: Items) => {
+    return response.items.map((item: Artist) => {
       return {
         ...item,
         bands: item.bandsIds.length
@@ -57,7 +55,7 @@ export const artistQuery: {
   },
   getArtistById: async (_: null, data: { id: string }) => {
     const { id }: { id: string } = data;
-    const response: Items = await http.get(`${ENDPOINTS.ARTIST}/${id}`);
+    const response: Artist = await http.get(`${ENDPOINTS.ARTIST}/${id}`);
 
     return {
       ...response,

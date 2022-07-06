@@ -30,13 +30,13 @@ export const typeAlbum = gql`
   }
 
   type Album {
-    _id: ID
+    _id: ID!
     name: String
     released: Int
-    artistsIds: [String]
-    bandsIds: [String]
-    trackIds: [String]
-    genresIds: [String]
+    artists: [Artist]
+    bands: [Band]
+    tracks: [Track]
+    genres: [Genre]
     image: String
   }
 `;
