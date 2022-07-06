@@ -5,7 +5,7 @@
   "main": "index.js",
   "module": "",
   "scripts": {
-    "start:dev": "nodemon ./server/src/index.ts",
+    "start:dev": "nodemon server/index.ts",
     "format": "npx prettier --write ."
   },
   "repository": {
