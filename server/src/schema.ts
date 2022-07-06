@@ -153,11 +153,11 @@ export const typeDefs = gql`
   }
 
   type Favourites {
-    userId: String
-    bandsIds: [String]
-    genresIds: [String]
-    artistsIds: [String]
-    tracksIds: [String]
+    userId: ID
+    bands: [Band]
+    genres: [Genre]
+    artists: [Artist]
+    tracks: [Track]
   }
 
   type Genre {

@@ -1,6 +1,10 @@
-import { Favorite, IContext, IFavourites } from '../../interfaces';
+import { Artist, Band, Favorite, Genre, IContext, IFavourites, IResponseFavourites, Track } from '../../interfaces';
 import http from '../../service';
 import { ENDPOINTS } from '../../constatns';
+import { bandsQuery } from '../bands';
+import { genresQuery } from '../genres';
+import { artistQuery } from '../artists';
+import { tracksQuery } from '../tracks';
 
 export const favouritesMutation: {
   addTrackToFavourites: (_: null, data: IFavourites, context: IContext) => Promise<Favorite>;
@@ -43,9 +47,44 @@ export const favouritesMutation: {
 };
 
 export const favoritesQuery: {
-  getFavourites: (_: null, data: null, context: IContext) => Promise<Favorite[]>;
+  getFavourites: (
+    _: null,
+    data: null,
+    context: IContext,
+  ) => Promise<{
+    artists: () => Promise<Artist>[];
+    genres: () => Promise<Genre>[];
+    bands: () => Promise<Band>[];
+    tracks: () => Promise<Track>[];
+    userId: string;
+  }>;
 } = {
-  getFavourites: async (_: null, data: null, context: IContext): Promise<Favorite[]> => {
-    return await http.get(ENDPOINTS.FAVOURITES.GET, context);
+  getFavourites: async (
+    _: null,
+    data: null,
+    context: IContext,
+  ): Promise<{
+    artists: () => Promise<Artist>[];
+    genres: () => Promise<Genre>[];
+    bands: () => Promise<Band>[];
+    tracks: () => Promise<Track>[];
+    userId: string;
+  }> => {
+    const response: IResponseFavourites = await http.get(ENDPOINTS.FAVOURITES.GET, context);
+    return {
+      userId: response.userId,
+      bands: () => {
+        return response.bandsIds.map(async (id: string) => await bandsQuery.getBandById(_, { id: id }));
+      },
+      genres: () => {
+        return response.genresIds.map(async (id: string) => await genresQuery.getGenreById(_, { id: id }));
+      },
+      artists: () => {
+        return response.artistsIds.map(async (id: string) => await artistQuery.getArtistById(_, { id: id }));
+      },
+      tracks: () => {
+        return response.tracksIds.map(async (id: string) => await tracksQuery.getTrackById(_, { id: id }));
+      },
+    };
   },
 };

@@ -86,3 +86,12 @@ export interface IFavourites {
   id: string;
   type: 'bands' | 'genres' | 'artists' | 'tracks';
 }
+
+export interface IResponseFavourites {
+  _id: string;
+  userId: string;
+  bandsIds: string[];
+  genresIds: string[];
+  artistsIds: string[];
+  tracksIds: string[];
+}
