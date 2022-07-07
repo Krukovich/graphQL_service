@@ -14,6 +14,7 @@ export const typeAlbum = gql`
       bandsIds: [String]
       trackIds: [String]
       genresIds: [String]
+      image: String
     ): Album
 
     updateAlbum(
@@ -24,6 +25,7 @@ export const typeAlbum = gql`
       bandsIds: [String]
       trackIds: [String]
       genresIds: [String]
+      image: String
     ): Album
 
     deleteAlbum(id: String!): Album
