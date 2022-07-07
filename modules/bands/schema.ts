@@ -23,20 +23,8 @@ export const typeBand = gql`
 
   input InputMember {
     _id: ID!
-    artist: InputArtist
+    artist: String
     instrument: String
     years: String
-  }
-
-  input InputArtist {
-    _id: ID!
-    firstName: String
-    secondName: String
-    middleName: String
-    birthDate: String
-    birthPlace: String
-    country: String
-    bandsIds: [String]
-    instruments: [String]
   }
 `;
