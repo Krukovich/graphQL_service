@@ -74,16 +74,24 @@ export const favoritesQuery: {
     return {
       userId: response.userId,
       bands: () => {
-        return response.bandsIds.map(async (id: string) => await bandsQuery.getBandById(_, { id: id }));
+        return response.bandsIds.length
+          ? response.bandsIds.map(async (id: string) => await bandsQuery.getBandById(_, { id: id }))
+          : [];
       },
       genres: () => {
-        return response.genresIds.map(async (id: string) => await genresQuery.getGenreById(_, { id: id }));
+        return response.genresIds.length
+          ? response.genresIds.map(async (id: string) => await genresQuery.getGenreById(_, { id: id }))
+          : [];
       },
       artists: () => {
-        return response.artistsIds.map(async (id: string) => await artistQuery.getArtistById(_, { id: id }));
+        return response.artistsIds.length
+          ? response.artistsIds.map(async (id: string) => await artistQuery.getArtistById(_, { id: id }))
+          : [];
       },
       tracks: () => {
-        return response.tracksIds.map(async (id: string) => await tracksQuery.getTrackById(_, { id: id }));
+        return response.tracksIds.length
+          ? response.tracksIds.map(async (id: string) => await tracksQuery.getTrackById(_, { id: id }))
+          : [];
       },
     };
   },
