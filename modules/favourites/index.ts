@@ -1,10 +1,12 @@
-import { Artist, Band, Favorite, Genre, IContext, IFavourites, IResponseFavourites, Track } from '../../interfaces';
+import { Favorite, IContext, IFavourites, IResponseFavourites } from '../../interfaces';
 import http from '../../service';
 import { ENDPOINTS } from '../../constatns';
-import { bandsQuery } from '../bands';
-import { genresQuery } from '../genres';
-import { artistQuery } from '../artists';
-import { tracksQuery } from '../tracks';
+import {
+  getArtistWithOtherValues,
+  getBandsWithOtherValues,
+  getGenresWithOtherValues,
+  getTracksWithOtherValues,
+} from '../../utils';
 
 export const favouritesMutation: {
   addTrackToFavourites: (_: null, data: IFavourites, context: IContext) => Promise<Favorite>;
@@ -47,52 +49,17 @@ export const favouritesMutation: {
 };
 
 export const favoritesQuery: {
-  getFavourites: (
-    _: null,
-    data: null,
-    context: IContext,
-  ) => Promise<{
-    artists: () => Promise<Artist>[];
-    genres: () => Promise<Genre>[];
-    bands: () => Promise<Band>[];
-    tracks: () => Promise<Track>[];
-    userId: string;
-  }>;
+  getFavourites: (_: null, data: null, context: IContext) => {};
 } = {
-  getFavourites: async (
-    _: null,
-    data: null,
-    context: IContext,
-  ): Promise<{
-    artists: () => Promise<Artist>[];
-    genres: () => Promise<Genre>[];
-    bands: () => Promise<Band>[];
-    tracks: () => Promise<Track>[];
-    userId: string;
-  }> => {
+  getFavourites: async (_: null, data: null, context: IContext) => {
     const response: IResponseFavourites = await http.get(ENDPOINTS.FAVOURITES.GET, context);
+
     return {
       userId: response.userId,
-      bands: () => {
-        return response.bandsIds.length
-          ? response.bandsIds.map(async (id: string) => await bandsQuery.getBandById(_, { id: id }))
-          : [];
-      },
-      genres: () => {
-        return response.genresIds.length
-          ? response.genresIds.map(async (id: string) => await genresQuery.getGenreById(_, { id: id }))
-          : [];
-      },
-      artists: () => {
-        return response.artistsIds.length
-          ? response.artistsIds.map(async (id: string) => await artistQuery.getArtistById(_, { id: id }))
-          : [];
-      },
-      tracks: () => {
-        return response.tracksIds.length
-          ? response.tracksIds.map(async (id: string) => await tracksQuery.getTrackById(_, { id: id }))
-          : [];
-      },
+      bands: response.bandsIds.length ? getBandsWithOtherValues(response.bandsIds) : [],
+      genres: response.genresIds.length ? getGenresWithOtherValues(response.genresIds) : [],
+      artists: response.artistsIds.length ? getArtistWithOtherValues(response.artistsIds) : [],
+      tracks: response.tracksIds.length ? await getTracksWithOtherValues(response.tracksIds) : [],
     };
   },
 };

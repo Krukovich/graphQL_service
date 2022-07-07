@@ -1,10 +1,13 @@
 import { IContext, Track } from '../../interfaces';
 import http from '../../service';
 import { ENDPOINTS } from '../../constatns';
-import { checkParams, insertQueryParamsInURL } from '../../utils';
-import { artistQuery } from '../artists';
-import { bandsQuery } from '../bands';
-import { genresQuery } from '../genres';
+import {
+  checkParams,
+  getArtistWithOtherValues,
+  getBandsWithOtherValues,
+  getGenresWithOtherValues,
+  insertQueryParamsInURL,
+} from '../../utils';
 
 export const tracksMutation: {
   createTrack: (_: null, data: Track, context: IContext) => Promise<Track>;
@@ -42,13 +45,9 @@ export const tracksQuery: {
     return response.items.map((item: Track) => {
       return {
         ...item,
-        artists: item.artistsIds.length
-          ? item.artistsIds.map((id: string) => artistQuery.getArtistById(_, { id: id }))
-          : [],
-        bands: item.bandsIds.length ? item.bandsIds.map((id: string) => bandsQuery.getBandById(_, { id: id })) : [],
-        genres: item.genresIds.length
-          ? item.genresIds.map((id: string) => genresQuery.getGenreById(_, { id: id }))
-          : [],
+        artists: item.artistsIds.length ? getArtistWithOtherValues(item.artistsIds) : [],
+        bands: item.bandsIds.length ? getBandsWithOtherValues(item.bandsIds) : [],
+        genres: item.genresIds.length ? getGenresWithOtherValues(item.genresIds) : [],
       };
     });
   },
@@ -58,15 +57,9 @@ export const tracksQuery: {
 
     return {
       ...response,
-      artists: response.artistsIds.length
-        ? response.artistsIds.map((id: string) => artistQuery.getArtistById(_, { id: id }))
-        : [],
-      bands: response.bandsIds.length
-        ? response.bandsIds.map((id: string) => bandsQuery.getBandById(_, { id: id }))
-        : [],
-      genres: response.genresIds.length
-        ? response.genresIds.map((id: string) => genresQuery.getGenreById(_, { id: id }))
-        : [],
+      artists: response.artistsIds.length ? getArtistWithOtherValues(response.artistsIds) : [],
+      bands: response.bandsIds.length ? getBandsWithOtherValues(response.bandsIds) : [],
+      genres: response.genresIds.length ? getGenresWithOtherValues(response.genresIds) : [],
     };
   },
 };

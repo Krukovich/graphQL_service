@@ -1,9 +1,7 @@
 import { Artist, IContext, IResponse } from '../../interfaces';
 import http from '../../service';
 import { ENDPOINTS } from '../../constatns';
-import { checkParams, insertQueryParamsInURL } from '../../utils';
-import { bandsQuery } from '../bands';
-import { genresQuery } from '../genres';
+import { checkParams, getBandsWithOtherValues, insertQueryParamsInURL } from '../../utils';
 
 export const artistMutation: {
   createArtist: (_: null, data: Artist, context: IContext) => Promise<Artist>;
@@ -39,17 +37,7 @@ export const artistQuery: {
     return response.items.map((item: Artist) => {
       return {
         ...item,
-        bands: item.bandsIds.length
-          ? item.bandsIds.map(async (id: string) => {
-              const bands = await bandsQuery.getBandById(_, { id: id });
-              return {
-                ...bands,
-                genres: bands.genresIds.length
-                  ? bands.genresIds.map(async (id: string) => await genresQuery.getGenreById(_, { id: id }))
-                  : [],
-              };
-            })
-          : [],
+        bands: item.bandsIds.length ? getBandsWithOtherValues(item.bandsIds) : [],
       };
     });
   },
@@ -59,17 +47,7 @@ export const artistQuery: {
 
     return {
       ...response,
-      bands: response.bandsIds.length
-        ? response.bandsIds.map(async (id: string) => {
-            const bands = await bandsQuery.getBandById(_, { id: id });
-            return {
-              ...bands,
-              genres: bands.genresIds.length
-                ? bands.genresIds.map(async (id: string) => await genresQuery.getGenreById(_, { id: id }))
-                : [],
-            };
-          })
-        : [],
+      bands: response.bandsIds.length ? getBandsWithOtherValues(response.bandsIds) : [],
     };
   },
 };
