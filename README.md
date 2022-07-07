@@ -38,7 +38,7 @@ PORT_FAVOURITES=3007
      "email": "Example@Example.com"
     }
    ```
-3. use mutation `login` for get jwt token
+3. use query `login` for get jwt token
    ```
     {
       "password": "pawwrod123",
@@ -114,5 +114,27 @@ PORT_FAVOURITES=3007
    }
    ```
 10. Now you have a completed database, you can make requests to remove updates or select by ID
+
+## Notice
+
+using queries like `getAlbums` `getArtist` `getBands` `getGenres` `getTracks` you can use pagination for this implemented two parameters `limit` and `offset`
+
+1. query example
+   ```
+     query Login($limit: Int, $offset: Int) {
+       getAlbums(limit: $limit, offset: $offset) {
+         _id
+         name
+         released
+       }
+     }
+   ```
+2. variables example
+   ```
+   {
+     "limit": 1,
+     "offset": 0,
+   }
+   ```
 
 ## Have fun :)
