@@ -15,14 +15,30 @@ export const albumsMutation: {
   updateAlbum: (_: null, data: Album, context: IContext) => Promise<Album>;
   deleteAlbum: (_: null, data: { id: string }, context: IContext) => Promise<void>;
 } = {
-  createAlbum: async (_: null, data: Album, context: IContext): Promise<Album> => {
-    return await http.post(ENDPOINTS.ALBUMS, data, context);
+  createAlbum: async (_: null, data: Album, context: IContext) => {
+    const response: Album = await http.post(ENDPOINTS.ALBUMS, data, context);
+
+    return {
+      ...response,
+      artists: response.artistsIds.length ? getArtistWithOtherValues(response.artistsIds) : [],
+      bands: response.bandsIds.length ? getBandsWithOtherValues(response.bandsIds) : [],
+      tracks: response.trackIds.length ? getTracksWithOtherValues(response.trackIds) : [],
+      genres: response.genresIds.length ? getGenresWithOtherValues(response.genresIds) : [],
+    };
   },
-  updateAlbum: async (_: null, data: Album, context: IContext): Promise<Album> => {
+  updateAlbum: async (_: null, data: Album, context: IContext) => {
     const { id }: { id: string } = data;
-    return await http.put(`${ENDPOINTS.ALBUMS}/${id}`, data, context);
+    const response: Album = await http.put(`${ENDPOINTS.ALBUMS}/${id}`, data, context);
+
+    return {
+      ...response,
+      artists: response.artistsIds.length ? getArtistWithOtherValues(response.artistsIds) : [],
+      bands: response.bandsIds.length ? getBandsWithOtherValues(response.bandsIds) : [],
+      tracks: response.trackIds.length ? getTracksWithOtherValues(response.trackIds) : [],
+      genres: response.genresIds.length ? getGenresWithOtherValues(response.genresIds) : [],
+    };
   },
-  deleteAlbum: async (_: null, data: { id: string }, context: IContext): Promise<void> => {
+  deleteAlbum: async (_: null, data: { id: string }, context: IContext) => {
     const { id }: { id: string } = data;
     return await http.delete(`${ENDPOINTS.ALBUMS}/${id}`, data, context);
   },
@@ -61,7 +77,7 @@ export const albumsQuery: {
       ...response,
       artists: response.artistsIds.length ? getArtistWithOtherValues(response.artistsIds) : [],
       bands: response.bandsIds.length ? getBandsWithOtherValues(response.bandsIds) : [],
-      tracks: response.trackIds.length ? await getTracksWithOtherValues(response.trackIds) : [],
+      tracks: response.trackIds.length ? getTracksWithOtherValues(response.trackIds) : [],
       genres: response.genresIds.length ? getGenresWithOtherValues(response.genresIds) : [],
     };
   },

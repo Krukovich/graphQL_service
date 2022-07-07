@@ -63,12 +63,12 @@ export const getAlbumWithOtherValues = async (albumId: string) => {
     ...album,
     artists: album.artistsIds.length ? getArtistWithOtherValues(album.artistsIds) : [],
     bands: album.bandsIds.length ? getBandsWithOtherValues(album.bandsIds) : [],
-    tracks: album.trackIds.length ? await getTracksWithOtherValues(album.trackIds) : [],
+    tracks: album.trackIds.length ? getTracksWithOtherValues(album.trackIds) : [],
     genres: album.genresIds.length ? getGenresWithOtherValues(album.genresIds) : [],
   };
 };
 
-export const getTracksWithOtherValues = async (trackIds: string[]): Promise<any> => {
+export const getTracksWithOtherValues = (trackIds: string[]): any => {
   return trackIds.map(async (id: string) => {
     const track: Track = await tracksQuery.getTrackById(null, { id: id });
 

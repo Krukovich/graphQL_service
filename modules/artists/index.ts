@@ -8,14 +8,24 @@ export const artistMutation: {
   updateArtist: (_: null, data: Artist, context: IContext) => Promise<Artist>;
   deleteArtist: (_: null, data: { id: string }, context: IContext) => Promise<void>;
 } = {
-  createArtist: async (_: null, data: Artist, context: IContext): Promise<Artist> => {
-    return await http.post(ENDPOINTS.ARTIST, data, context);
+  createArtist: async (_: null, data: Artist, context: IContext) => {
+    const response: Artist = await http.post(ENDPOINTS.ARTIST, data, context);
+
+    return {
+      ...response,
+      bands: response.bandsIds.length ? getBandsWithOtherValues(response.bandsIds) : [],
+    };
   },
-  updateArtist: async (_: null, data: Artist, context: IContext): Promise<Artist> => {
+  updateArtist: async (_: null, data: Artist, context: IContext) => {
     const { id }: { id: string } = data;
-    return await http.put(`${ENDPOINTS.ARTIST}/${id}`, data, context);
+    const response: Artist = await http.put(`${ENDPOINTS.ARTIST}/${id}`, data, context);
+
+    return {
+      ...response,
+      bands: response.bandsIds.length ? getBandsWithOtherValues(response.bandsIds) : [],
+    };
   },
-  deleteArtist: async (_: null, data: { id: string }, context: IContext): Promise<void> => {
+  deleteArtist: async (_: null, data: { id: string }, context: IContext) => {
     const { id }: { id: string } = data;
     return await http.delete(`${ENDPOINTS.ARTIST}/${id}`, data, context);
   },

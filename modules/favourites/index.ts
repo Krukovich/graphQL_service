@@ -59,7 +59,7 @@ export const favoritesQuery: {
       bands: response.bandsIds.length ? getBandsWithOtherValues(response.bandsIds) : [],
       genres: response.genresIds.length ? getGenresWithOtherValues(response.genresIds) : [],
       artists: response.artistsIds.length ? getArtistWithOtherValues(response.artistsIds) : [],
-      tracks: response.tracksIds.length ? await getTracksWithOtherValues(response.tracksIds) : [],
+      tracks: response.tracksIds.length ? getTracksWithOtherValues(response.tracksIds) : [],
     };
   },
 };

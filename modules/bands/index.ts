@@ -8,14 +8,24 @@ export const bandsMutation: {
   updateBand: (_: null, data: Band, context: IContext) => Promise<Band>;
   deleteBand: (_: null, data: Band, context: IContext) => Promise<void>;
 } = {
-  createBand: async (_: null, data: Band, context: IContext): Promise<Band> => {
-    return await http.post(ENDPOINTS.BANDS, data, context);
+  createBand: async (_: null, data: Band, context: IContext) => {
+    const response: Band = await http.post(ENDPOINTS.BANDS, data, context);
+
+    return {
+      ...response,
+      genres: response.genresIds.length ? getGenresWithOtherValues(response.genresIds) : [],
+    };
   },
-  updateBand: async (_: null, data: Band, context: IContext): Promise<Band> => {
+  updateBand: async (_: null, data: Band, context: IContext) => {
     const { id }: { id: string } = data;
-    return await http.put(`${ENDPOINTS.BANDS}/${id}`, data, context);
+    const response: Band = await http.put(`${ENDPOINTS.BANDS}/${id}`, data, context);
+
+    return {
+      ...response,
+      genres: response.genresIds.length ? getGenresWithOtherValues(response.genresIds) : [],
+    };
   },
-  deleteBand: async (_: null, data: Band, context: IContext): Promise<void> => {
+  deleteBand: async (_: null, data: Band, context: IContext) => {
     const { id }: { id: string } = data;
     return await http.delete(`${ENDPOINTS.BANDS}/${id}`, data, context);
   },

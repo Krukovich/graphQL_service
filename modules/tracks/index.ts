@@ -14,12 +14,26 @@ export const tracksMutation: {
   updateTrack: (_: null, data: Track, context: IContext) => Promise<Track>;
   deleteTrack: (_: null, data: Track, context: IContext) => Promise<void>;
 } = {
-  createTrack: async (_: null, data: Track, context: IContext): Promise<Track> => {
-    return await http.post(ENDPOINTS.TRACKS, data, context);
+  createTrack: async (_: null, data: Track, context: IContext) => {
+    const response: Track = await http.post(ENDPOINTS.TRACKS, data, context);
+
+    return {
+      ...response,
+      artists: response.artistsIds.length ? getArtistWithOtherValues(response.artistsIds) : [],
+      bands: response.bandsIds.length ? getBandsWithOtherValues(response.bandsIds) : [],
+      genres: response.genresIds.length ? getGenresWithOtherValues(response.genresIds) : [],
+    };
   },
-  updateTrack: async (_: null, data: Track, context: IContext): Promise<Track> => {
+  updateTrack: async (_: null, data: Track, context: IContext) => {
     const { id }: { id: string } = data;
-    return await http.put(`${ENDPOINTS.TRACKS}/${id}`, data, context);
+    const response: Track = await http.put(`${ENDPOINTS.TRACKS}/${id}`, data, context);
+
+    return {
+      ...response,
+      artists: response.artistsIds.length ? getArtistWithOtherValues(response.artistsIds) : [],
+      bands: response.bandsIds.length ? getBandsWithOtherValues(response.bandsIds) : [],
+      genres: response.genresIds.length ? getGenresWithOtherValues(response.genresIds) : [],
+    };
   },
   deleteTrack: async (_: null, data: { id: string }, context: IContext): Promise<void> => {
     const { id }: { id: string } = data;
