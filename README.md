@@ -16,8 +16,9 @@ PORT_USER=3004
 PORT_FAVOURITES=3007
 ```
 
-4. run command `docker-compose up -d` if you do not have `docker-compose` please run this command `npm install docker-compose` and after run `docker-compose up -d`
-5. change this variable `MONGO_URL` in `.env` in `node-graphql-service` repo to this one `mongodb://root:example@localhost:27888/?authSource=admin.`
+4. install docker https://docs.docker.com/desktop/#download-and-install
+5. run command `docker-compose up -d` if you do not have `docker-compose` please run this command `npm install docker-compose` and after run `docker-compose up -d`
+6. change this variable `MONGO_URL` in `.env` in `node-graphql-service` repo to this one `mongodb://root:example@localhost:27888/?authSource=admin.`
 
 ## Run Application
 
