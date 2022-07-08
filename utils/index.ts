@@ -1,9 +1,11 @@
-import { Album, Artist, Band, Genre, IResponseFavourites, Track } from '../interfaces';
+import { Album, Artist, Band, Genre, ICustomError, IResponseFavourites, Track } from '../interfaces';
 import { bandsQuery } from '../modules/bands';
 import { genresQuery } from '../modules/genres';
 import { artistQuery } from '../modules/artists';
 import { tracksQuery } from '../modules/tracks';
 import { albumsQuery } from '../modules/albums';
+import { errorName, errorType } from '../error';
+import { STATUS_CODE } from '../constatns';
 
 export const checkParams = (limit: number, offset: number): boolean => {
   return limit >= 0 && offset >= 0;
@@ -90,4 +92,23 @@ export const getFavouritesWithOtherValues = (response: IResponseFavourites) => {
     artists: response.artistsIds.length ? getArtistWithOtherValues(response.artistsIds) : [],
     tracks: response.tracksIds.length ? getTracksWithOtherValues(response.tracksIds) : [],
   };
+};
+
+export const getError = (errorName: string): ICustomError => {
+  return errorType[errorName];
+};
+
+export const handleError = (statusCode: number): void => {
+  switch (statusCode) {
+    case STATUS_CODE.FORBIDDEN:
+      throw new Error(errorName.UNAUTHORIZED);
+    case STATUS_CODE.INTERNAL_SERVER_ERROR:
+      throw new Error(errorName.INTERNAL_SERVER_ERROR);
+    case STATUS_CODE.BAD_REQUEST:
+      throw new Error(errorName.BAD_REQUEST);
+    case STATUS_CODE.NOT_FOUND:
+      throw new Error(errorName.NOT_FOUND);
+    default:
+      break;
+  }
 };

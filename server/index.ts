@@ -8,6 +8,8 @@ import { typeGenre } from '../modules/genres/schema';
 import { typeBand } from '../modules/bands/schema';
 import { typeTrack } from '../modules/tracks/schema';
 import { typeFavourites } from '../modules/favourites/schema';
+import { getError } from '../utils';
+import { ICustomError } from '../interfaces';
 import * as depthLimit from 'graphql-depth-limit';
 import 'dotenv/config';
 
@@ -18,6 +20,13 @@ const server: ApolloServer = new ApolloServer({
   context: ({ req }: { req: IncomingMessage }) => {
     return {
       token: req.headers.authorization || '',
+    };
+  },
+  formatError: (err: { message: string }) => {
+    const error: ICustomError = getError(err.message);
+    return {
+      message: error.message,
+      statusCode: error.statusCode,
     };
   },
 });

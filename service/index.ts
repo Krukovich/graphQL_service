@@ -1,6 +1,7 @@
 import fetch, { Response } from 'node-fetch';
 import { HEADERS, METHOD } from '../constatns';
 import { IContext } from '../interfaces';
+import { handleError } from '../utils';
 
 class HTTP {
   constructor() {}
@@ -14,6 +15,7 @@ class HTTP {
       },
     });
 
+    handleError(response.status);
     return response.json();
   }
 
@@ -27,6 +29,7 @@ class HTTP {
       },
     });
 
+    handleError(response.status);
     return await response.json();
   }
 
@@ -40,6 +43,7 @@ class HTTP {
       },
     });
 
+    handleError(response.status);
     return await response.json();
   }
 
@@ -53,6 +57,7 @@ class HTTP {
       },
     });
 
+    handleError(response.status);
     return await response.json();
   }
 }

@@ -91,3 +91,8 @@ export interface IResponseFavourites {
 export interface IResponse {
   items: Artist[];
 }
+
+export interface ICustomError {
+  message: string;
+  statusCode: number;
+}

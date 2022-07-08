@@ -36,3 +36,11 @@ export const METHOD: { GET: string; POST: string; PUT: string; DELETE: string } 
 };
 
 export const HEADERS: { 'Content-Type': string } = { 'Content-Type': 'application/json' };
+
+export const STATUS_CODE: { FORBIDDEN: number; INTERNAL_SERVER_ERROR: number; BAD_REQUEST: number; NOT_FOUND: number } =
+  {
+    FORBIDDEN: 403,
+    INTERNAL_SERVER_ERROR: 500,
+    BAD_REQUEST: 400,
+    NOT_FOUND: 404,
+  };
