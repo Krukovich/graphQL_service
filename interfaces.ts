@@ -70,15 +70,6 @@ export interface Album {
   image: string;
 }
 
-export interface Favorite {
-  _id: string;
-  userId: string;
-  bandsIds: string[];
-  genresIds: string[];
-  artistsIds: string[];
-  tracksIds: string[];
-}
-
 export interface IContext {
   token: string;
 }

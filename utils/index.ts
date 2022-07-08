@@ -1,4 +1,4 @@
-import { Album, Artist, Band, Genre, Track } from '../interfaces';
+import { Album, Artist, Band, Genre, IResponseFavourites, Track } from '../interfaces';
 import { bandsQuery } from '../modules/bands';
 import { genresQuery } from '../modules/genres';
 import { artistQuery } from '../modules/artists';
@@ -80,4 +80,14 @@ export const getTracksWithOtherValues = (trackIds: string[]): any => {
       genres: track.genresIds.length ? getGenresWithOtherValues(track.genresIds) : [],
     };
   });
+};
+
+export const getFavouritesWithOtherValues = (response: IResponseFavourites) => {
+  return {
+    userId: response.userId,
+    bands: response.bandsIds.length ? getBandsWithOtherValues(response.bandsIds) : [],
+    genres: response.genresIds.length ? getGenresWithOtherValues(response.genresIds) : [],
+    artists: response.artistsIds.length ? getArtistWithOtherValues(response.artistsIds) : [],
+    tracks: response.tracksIds.length ? getTracksWithOtherValues(response.tracksIds) : [],
+  };
 };
