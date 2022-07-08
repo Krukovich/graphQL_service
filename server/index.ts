@@ -8,9 +8,11 @@ import { typeGenre } from '../modules/genres/schema';
 import { typeBand } from '../modules/bands/schema';
 import { typeTrack } from '../modules/tracks/schema';
 import { typeFavourites } from '../modules/favourites/schema';
+import * as depthLimit from 'graphql-depth-limit';
 import 'dotenv/config';
 
 const server: ApolloServer = new ApolloServer({
+  validationRules: [depthLimit(5)],
   typeDefs: [typeArtist, typeAlbum, typeUser, typeGenre, typeBand, typeTrack, typeFavourites],
   resolvers,
   context: ({ req }: { req: IncomingMessage }) => {
